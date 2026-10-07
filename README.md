@@ -12,4 +12,4 @@ La base de datos fue diseñada para organizar y relacionar la información neces
 
 A continuación se muestra el Diagrama Entidad-Relación (DER) de la base de datos:
 
-![Diagrama Entidad-Relación](DER.png)
+![Diagrama Entidad-Relación](docs/DER.png)
