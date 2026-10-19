@@ -1,24 +1,33 @@
 
 package mx.uam.cua.parque.dto;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 public class ClienteDTO {
 
-    private Long idCliente;
+    private Integer idCliente;
+    private String numeroCliente;
     private String nombre;
-    private String apellido;
+    private String apellidos;
+    private LocalDate fechaNacimiento;
     private String correo;
     private String telefono;
-    private Instant createdAt;
-    private Instant updatedAt;
+    private String password;
 
-    public Long getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public String getNumeroCliente() {
+        return numeroCliente;
+    }
+
+    public void setNumeroCliente(String numeroCliente) {
+        this.numeroCliente = numeroCliente;
     }
 
     public String getNombre() {
@@ -29,12 +38,20 @@ public class ClienteDTO {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getCorreo() {
@@ -53,19 +70,11 @@ public class ClienteDTO {
         this.telefono = telefono;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -1,13 +1,31 @@
+
 package mx.uam.cua.parque.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import mx.uam.cua.parque.dto.ClienteDTO;
+import mx.uam.cua.parque.service.ClienteService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/clientes")
 public class ClienteController {
 
-    @GetMapping("/chris")
-    public String chris() {
-        return "Christian springboot";
+    private final ClienteService clienteService;
+
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
+    @GetMapping
+    public List<ClienteDTO> findAll() {
+        return clienteService.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ClienteDTO save(@RequestBody ClienteDTO clienteDTO) {
+        return clienteService.save(clienteDTO);
     }
 }
