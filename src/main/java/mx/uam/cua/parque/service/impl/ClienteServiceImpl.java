@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Optional;
+
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
@@ -51,4 +53,12 @@ public class ClienteServiceImpl implements ClienteService {
 
         return clienteDTOs;
     }
+
+    @Override
+    public Optional<ClienteDTO> findById(Integer id) {
+
+        return clienteRepository.findById(id)
+                .map(clienteMapper::toClienteDTO);
+    }
 }
+    
