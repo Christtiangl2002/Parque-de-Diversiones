@@ -6,7 +6,10 @@ import mx.uam.cua.parque.entity.ClienteEntity;
 import mx.uam.cua.parque.mapper.ClienteMapper;
 import mx.uam.cua.parque.repository.ClienteRepository;
 import mx.uam.cua.parque.service.ClienteService;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +67,8 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteDTO update(Integer id, ClienteDTO clienteDTO) {
         ClienteEntity clienteEntity = clienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Cliente no encontrado"));
 
         clienteEntity.setNumeroCliente(clienteDTO.getNumeroCliente());
         clienteEntity.setNombre(clienteDTO.getNombre());
@@ -82,8 +86,9 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void delete(Integer id) {
         ClienteEntity clienteEntity = clienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
-    
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Cliente no encontrado"));
+
         clienteRepository.delete(clienteEntity);
     }
 }
