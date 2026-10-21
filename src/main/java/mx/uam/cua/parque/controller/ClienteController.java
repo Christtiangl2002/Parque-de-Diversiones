@@ -30,6 +30,19 @@ public class ClienteController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ClienteDTO update(
+        @PathVariable Integer id,
+        @RequestBody ClienteDTO clienteDTO) {
+        return clienteService.update(id, clienteDTO);
+    }  
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id) {
+        clienteService.delete(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO save(@RequestBody ClienteDTO clienteDTO) {

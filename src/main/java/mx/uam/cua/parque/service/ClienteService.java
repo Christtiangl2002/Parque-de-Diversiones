@@ -13,4 +13,8 @@ public interface ClienteService {
     List<ClienteDTO> findAll();
 
     Optional<ClienteDTO> findById(Integer id);
+
+    ClienteDTO update(Integer id, ClienteDTO clienteDTO);
+
+    void delete(Integer id);
 }

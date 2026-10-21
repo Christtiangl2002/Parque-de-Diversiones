@@ -60,5 +60,31 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findById(id)
                 .map(clienteMapper::toClienteDTO);
     }
+
+    @Override
+    public ClienteDTO update(Integer id, ClienteDTO clienteDTO) {
+        ClienteEntity clienteEntity = clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
+        clienteEntity.setNumeroCliente(clienteDTO.getNumeroCliente());
+        clienteEntity.setNombre(clienteDTO.getNombre());
+        clienteEntity.setApellidos(clienteDTO.getApellidos());
+        clienteEntity.setFechaNacimiento(clienteDTO.getFechaNacimiento());
+        clienteEntity.setCorreo(clienteDTO.getCorreo());
+        clienteEntity.setTelefono(clienteDTO.getTelefono());
+        clienteEntity.setPassword(clienteDTO.getPassword());
+
+        clienteEntity = clienteRepository.save(clienteEntity);
+
+        return clienteMapper.toClienteDTO(clienteEntity);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        ClienteEntity clienteEntity = clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+    
+        clienteRepository.delete(clienteEntity);
+    }
 }
     
